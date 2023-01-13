@@ -104,11 +104,10 @@ object DataTransformer {
 
       df_cleaned.show(20)
 
-      df_cleaned.withColumn("nb_persons", when(col("nb_persons").isNull, 15)
-        .otherwise(col("nb_persons")))
+      val df_silver = df_cleaned.filter(df("nb_persons").isNull)
 
       // Write to final
-      val hasWritten = writeParquetToHDFS(hdfsSilverPath, df_cleaned)
+      val hasWritten = writeParquetToHDFS(hdfsSilverPath, df_silver)
 
       if (!hasWritten) Failure(new Throwable("cannot save silver data file"))
       println("Silver Data File Has Been Successfully Written")
