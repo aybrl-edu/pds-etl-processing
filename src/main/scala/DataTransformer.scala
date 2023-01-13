@@ -1,4 +1,4 @@
-import org.apache.spark.sql.functions.col
+import org.apache.spark.sql.functions.{col, when}
 import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 
 import scala.util.{Failure, Success, Try}
@@ -64,7 +64,7 @@ object DataTransformer {
   def transformDataSilver(): Boolean = {
     // Log
     println(s"\n${"-" * 25} READING FILE STARTED ${"-" * 25}")
-    println(s"reading from ${hdfsRawPath}")
+    println(s"reading from ${hdfsBronzePath}")
 
     // Spark-session context
     sparkSession.sparkContext.setCheckpointDir("tmp")
@@ -103,6 +103,9 @@ object DataTransformer {
       val df_cleaned = ds.toDF("RoomId", "start_date", "end_date", "nb_persons")
 
       df_cleaned.show(20)
+
+      df_cleaned.withColumn("nb_persons", when(col("nb_persons").isNull(), 15)
+        .otherwise(col("nb_persons")))
 
       // Write to final
       val hasWritten = writeParquetToHDFS(hdfsSilverPath, df_cleaned)
