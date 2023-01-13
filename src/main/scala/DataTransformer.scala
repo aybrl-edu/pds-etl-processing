@@ -103,6 +103,7 @@ object DataTransformer {
       val df_cleaned = ds.toDF("RoomId", "start_date", "end_date", "nb_persons")
 
       df_cleaned.show(1000)
+      println(s"bronze ${df_cleaned.count()}")
 
       val df_silver = df_cleaned.filter(df_cleaned("nb_persons").isNull)
 
