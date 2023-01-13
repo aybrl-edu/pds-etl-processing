@@ -1,0 +1,24 @@
+{
+  "columns" : [
+    {
+      "name": "RoomId",
+      "typeOf": "Long"
+    },
+    {
+      "name": "start_time",
+      "typeOf": "String"
+    },
+    {
+      "name": "end_time",
+      "typeOf": "String"
+    },
+    {
+      "name": "nb_persons",
+      "typeOf": "Double"
+    },
+    {
+      "name": "mult_factor",
+      "typeOf": "Double"
+    }
+  ]
+}

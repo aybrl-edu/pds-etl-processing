@@ -1,5 +1,5 @@
 import org.apache.spark.sql.functions.col
-import org.apache.spark.sql.{DataFrame, Dataset, SaveMode, SparkSession}
+import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 
 import scala.util.{Failure, Success, Try}
 
@@ -73,7 +73,10 @@ object DataTransformer {
     // Load data from HDFS
     try {
       // Second Iteration
-      val df = sparkSession.read.parquet(hdfsBronzePath)
+      val df = sparkSession.read
+        .schema(Helper.sparkSchemeFromJSON())
+        .option("mode", "DROPMALFORMED")
+        .parquet(hdfsBronzePath)
 
       // prepare
       val df_str = df
