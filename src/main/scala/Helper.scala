@@ -1,6 +1,6 @@
 import org.apache.spark.sql.types.{DataType, StructField, StructType}
 
-import org.apache.spark.sql.types.{BooleanType, DataType, DateType, DoubleType, FloatType, IntegerType, LongType, StringType, StructField, StructType}
+import org.apache.spark.sql.types.{BooleanType, TimestampType, DataType, DateType, DoubleType, FloatType, IntegerType, LongType, StringType, StructField, StructType}
 import spray.json._
 
 object Helper {
@@ -14,6 +14,7 @@ object Helper {
       "Int" -> IntegerType,
       "Boolean" -> BooleanType,
       "Long" -> LongType,
+      "TIMESTAMP" -> TimestampType,
       "DateTime" -> DateType
     )
 

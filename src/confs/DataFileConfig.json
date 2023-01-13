@@ -6,11 +6,11 @@
     },
     {
       "name": "start_time",
-      "typeOf": "String"
+      "typeOf": "TIMESTAMP"
     },
     {
       "name": "end_time",
-      "typeOf": "String"
+      "typeOf": "TIMESTAMP"
     },
     {
       "name": "nb_persons",
