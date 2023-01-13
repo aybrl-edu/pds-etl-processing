@@ -104,7 +104,7 @@ object DataTransformer {
 
       df_cleaned.show(20)
 
-      df_cleaned.withColumn("nb_persons", when(col("nb_persons").isNull(), 15)
+      df_cleaned.withColumn("nb_persons", when(col("nb_persons").isNull, 15)
         .otherwise(col("nb_persons")))
 
       // Write to final
