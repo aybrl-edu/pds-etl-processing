@@ -106,9 +106,6 @@ object DataTransformer {
 
       val df_silver = df_cleaned.filter(df_cleaned("nb_persons").isNull)
 
-      println(s"bronze ${df_cleaned.count()}")
-      println(s"bronze ${df_silver.count()}")
-
       // Write to final
       val hasWritten = writeParquetToHDFS(hdfsSilverPath, df_silver)
 
